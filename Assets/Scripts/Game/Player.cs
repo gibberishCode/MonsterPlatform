@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 
 public class Player : MonoBehaviour, ITarget {
     [SerializeField] private float _maxSpeed;

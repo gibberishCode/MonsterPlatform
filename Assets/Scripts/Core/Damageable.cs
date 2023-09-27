@@ -1,18 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float Health;
+    private float _currentHealth;
+
+    public UnityEvent DiedEvent;
+
+    private void Start()
     {
-        
+        _currentHealth = Health;
+    }
+    public void DealDamage(float amount)
+    {
+        if (amount <= 0)
+        {
+            return;
+        }
+        _currentHealth -= amount;
+        if (_currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Die()
     {
-        
+        DiedEvent?.Invoke();
+        Destroy(gameObject);
     }
 }
