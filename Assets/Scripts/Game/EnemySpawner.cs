@@ -22,7 +22,8 @@ public class EnemySpawner : MonoBehaviour
         var pos = Random.insideUnitCircle.Vector2FlatToX0Z() * Range;
         var enemy = Instantiate(_enemyPrefab);
         enemy.transform.position = pos;
-        enemy.GetComponent<Mover>().Target = FindAnyObjectByType<Player>();
+        //TODO fix
+        enemy.GetComponent<TargetMover>().Target = FindAnyObjectByType<Player>();
     }
 
 }

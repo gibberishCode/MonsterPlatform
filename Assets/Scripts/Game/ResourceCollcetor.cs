@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using MyUnityHelpers;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ResourceCollcetor : InTriggerActionExecutor
 {
+    public UnityEvent<ResourceSpot> ResourceCollectedEvent;
     public int CollectedAtOnce = 1;
     private GameManager _gameManager;
 
@@ -25,5 +27,6 @@ public class ResourceCollcetor : InTriggerActionExecutor
         Debug.Assert(spot);
         var collected = spot.Consume(CollectedAtOnce);
         _gameManager.GameData.Resources[(int)(spot.ResourceInfo.Type)].Amount += collected;
+        ResourceCollectedEvent?.Invoke(spot);
     }
 }

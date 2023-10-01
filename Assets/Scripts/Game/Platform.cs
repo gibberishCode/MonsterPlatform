@@ -15,13 +15,13 @@ public class Platform : MonoBehaviour, ITarget
     [SerializeField] private TowerSpot _towerSpotPrefab;
     private TowerSpot _currentSpot;
     private PlatformGrid _grid;
-    private Mover _mover;
+    private TargetMover _mover;
 
     public Vector3 Position => transform.position;
 
     private void Awake()
     {
-        _mover = GetComponent<Mover>();
+        _mover = GetComponent<TargetMover>();
         _mover.Target = _player;
         _grid = new PlatformGrid(PlatformGridDimensions, PlatformCellSize, this);
         _gridDrawer.Grid = _grid;
