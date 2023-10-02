@@ -34,7 +34,10 @@ public class GameManager : MonoBehaviour, IGameService
 
     private void Update()
     {
+        // if (_joystick.Horizontal > 0.1f || _joystick.Vertical > 0.1f)
+        // {
         _player.SetDirection(new Vector3(_joystick.Horizontal, 0, _joystick.Vertical));
+        // }
     }
 
     public void GameOver()

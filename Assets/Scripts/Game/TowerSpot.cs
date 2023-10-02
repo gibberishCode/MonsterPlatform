@@ -67,6 +67,7 @@ public class TowerSpot : MonoBehaviour
 
     internal void TryingToBuild(bool state)
     {
+        StopAllCoroutines();
         GetComponent<Renderer>().material = state ? _tryingToBuildMaterial : _normal;
     }
 }

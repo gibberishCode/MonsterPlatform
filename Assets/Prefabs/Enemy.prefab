@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3141042515099025251}
   - component: {fileID: 7092509135546276408}
   - component: {fileID: 4250490771537179641}
-  - component: {fileID: 2438029787064050228}
   - component: {fileID: 4377983236223378730}
   - component: {fileID: 2405988311066267804}
   - component: {fileID: 9072832273450121007}
   - component: {fileID: -2262847879942958712}
+  - component: {fileID: 5189581774002166806}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -72,22 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d9dcaeb44afc1bea6b2f8c033b6282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
---- !u!114 &2438029787064050228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3433978396397009001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f8ddfa3a8be36c7ad75d13b169c8c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _settings:
-    Speed: 7
-    DistanceTollerance: 1
 --- !u!95 &4377983236223378730
 Animator:
   serializedVersion: 5
@@ -121,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535337acf315a9c98a8e9b127a4bf653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 1
+  Health: 4
   DiedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -138,7 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 4377983236223378730}
-  _enemey: {fileID: 4250490771537179641}
+  _attacker: {fileID: -2262847879942958712}
+  _mover: {fileID: 5189581774002166806}
 --- !u!114 &-2262847879942958712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +139,26 @@ MonoBehaviour:
   _data:
     Damage: 10
     Frequency: 1
+--- !u!114 &5189581774002166806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433978396397009001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6ddcfbe2ab98b19a9e7ea937d6db82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings:
+    Acceleration: 10
+    MaxSpeed: 5
+    DistanceTollerance: 5
+  _usePhysics: 0
+  ReachedTarget:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6753798383234865392
 PrefabInstance:
   m_ObjectHideFlags: 0

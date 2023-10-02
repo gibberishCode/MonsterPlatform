@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 [System.Serializable]
@@ -13,6 +14,7 @@ public class AttackerData
 }
 public class Attacker : MonoBehaviour
 {
+    public UnityEvent<GameObject> TargetSetEvent;
     [SerializeField] AttackerData _data;
     private Damageable _currentTarget;
     private FrequencyExecutor _attackTimer;
@@ -36,6 +38,7 @@ public class Attacker : MonoBehaviour
         {
             _currentTarget = target;
             _attackTimer = new FrequencyExecutor(_data.Frequency, this, Attack);
+            TargetSetEvent?.Invoke(gameObject);
         }
     }
 
