@@ -72,7 +72,7 @@ public class PlayerAnimator : MonoBehaviour
                 // if (_ik != 0)
                 // {
                 _animator.SetIKPosition(AvatarIKGoal.RightHand, _shootTarget);
-                _animator.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.LookRotation(transform.right));
+                _animator.SetIKRotation(AvatarIKGoal.RightHand, Quaternion.LookRotation(transform.forward));
                 _animator.SetIKPositionWeight(AvatarIKGoal.RightHand, _ik);
                 _animator.SetIKRotationWeight(AvatarIKGoal.RightHand, _ik);
                 // }

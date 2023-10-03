@@ -39,8 +39,8 @@ public class Player : MonoBehaviour, ITarget
 
     private void OnInRange(GameObject obj)
     {
-        var dir = transform.position - obj.transform.position;
-        // var dir = obj.transform.position - transform.position;
+        // var dir = transform.position - obj.transform.position;
+        var dir = obj.transform.position - transform.position;
         SetDirection(dir);
     }
 
@@ -57,7 +57,15 @@ public class Player : MonoBehaviour, ITarget
 
     public void SetDirection(Vector3 direction)
     {
-        _mover.Direction = direction;
+        if (direction == Vector3.zero)
+        {
+            _mover.DesiredSpeed = 0;
+        }
+        else
+        {
+            _mover.DesiredSpeed = _mover.MaxSpeed;
+            _mover.Direction = direction;
+        }
     }
 
     public Vector3 Position => transform.position;

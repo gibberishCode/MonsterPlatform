@@ -1,6 +1,7 @@
 using UnityEngine;
 using Core;
 using UnityEngine.Events;
+using MyUnityHelpers;
 
 public class TargetMover : Mover
 {
@@ -15,7 +16,7 @@ public class TargetMover : Mover
     private void Update()
     {
         UpdateDirection();
-        _desiredVelocity = Direction == Vector3.zero ? Vector3.zero : Direction * _settings.MaxSpeed;
+        _desiredVelocity = Direction == Vector3.zero ? Vector3.zero : Direction * DesiredSpeed;
         Move();
 
     }
@@ -27,7 +28,7 @@ public class TargetMover : Mover
             return;
         }
 
-        var vector = _target.Position - transform.position;
+        var vector = _target.Position.ZeroY() - transform.position.ZeroY();
         if (vector.sqrMagnitude < _settings.DistanceTollerance * _settings.DistanceTollerance)
         {
             if (Direction != Vector3.zero)

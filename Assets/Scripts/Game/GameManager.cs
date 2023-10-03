@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, IGameService
     [SerializeField] private Joystick _joystick;
     [SerializeField] GameData _gameData;
     public GameData GameData => _gameData;
+    public Player Player => _player;
 
 
     private void Awake()
@@ -34,10 +35,11 @@ public class GameManager : MonoBehaviour, IGameService
 
     private void Update()
     {
-        // if (_joystick.Horizontal > 0.1f || _joystick.Vertical > 0.1f)
+        // if (_joystick.Horizontal ==  0 && _joystick.)
         // {
-        _player.SetDirection(new Vector3(_joystick.Horizontal, 0, _joystick.Vertical));
+
         // }
+        _player.SetDirection(new Vector3(_joystick.Horizontal, 0, _joystick.Vertical));
     }
 
     public void GameOver()

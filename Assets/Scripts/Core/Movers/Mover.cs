@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core;
+using Unity.VisualScripting;
 [System.Serializable]
 public class MoverSettings
 {
@@ -22,6 +23,7 @@ public class Mover : MonoBehaviour, IMover
 
     public float Speed => _velocity.magnitude;
     public float MaxSpeed => _settings.MaxSpeed;
+    public float DesiredSpeed { get; set; }
     public Vector3 Direction { get; set; }
 
 
@@ -33,9 +35,14 @@ public class Mover : MonoBehaviour, IMover
         }
     }
 
+    private void Start()
+    {
+        DesiredSpeed = MaxSpeed;
+    }
+
     private void Update()
     {
-        _desiredVelocity = Direction * _settings.MaxSpeed;
+        _desiredVelocity = Direction * DesiredSpeed;
         if (!_usePhysics)
         {
             Move();
