@@ -16,7 +16,7 @@ public class CameraFolower : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (_target == null)
         {
@@ -32,6 +32,6 @@ public class CameraFolower : MonoBehaviour
         transform.position = smoothedPosition;
 
         // Make the camera look at the target.
-        transform.LookAt(_target);
+        // transform.LookAt(_target);   
     }
 }

@@ -76,6 +76,7 @@ public class Mover : MonoBehaviour, IMover
             {
                 _velocity = Vector3.zero;
             }
+            // _rb.AddForce(_velocity, ForceMode.VelocityChange);
             _rb.velocity = _velocity;
         }
         else

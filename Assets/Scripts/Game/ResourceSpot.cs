@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ResourceSpot : MonoBehaviour
 {
+    public event Action Destroyed;
     [SerializeField] ResourceInfo _resourceInfo;
     public ResourceInfo ResourceInfo => _resourceInfo;
 
@@ -14,6 +15,7 @@ public class ResourceSpot : MonoBehaviour
         _resourceInfo.Amount -= consumed;
         if (_resourceInfo.Amount <= 0)
         {
+            Destroyed?.Invoke();
             Destroy(gameObject);
         }
         return consumed;

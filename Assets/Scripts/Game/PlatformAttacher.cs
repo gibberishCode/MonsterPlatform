@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlatformAttacher : MonoBehaviour
 {
+    public UnityEvent<bool> AttachedState;
     [SerializeField] LayerMask _platform;
     private Transform _platformTransform;
 
@@ -18,6 +20,7 @@ public class PlatformAttacher : MonoBehaviour
             {
                 _platformTransform = hit.collider.transform;
                 transform.parent = _platformTransform;
+                AttachedState?.Invoke(true);
             }
         }
         else
@@ -25,6 +28,7 @@ public class PlatformAttacher : MonoBehaviour
             if (transform.parent == _platformTransform)
             {
                 transform.parent = null;
+                AttachedState?.Invoke(false);
             }
         }
 

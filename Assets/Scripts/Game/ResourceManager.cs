@@ -15,7 +15,6 @@ public class ResourceManager : MonoBehaviour, IGameService
         _gameManager = ServiceLocator.Current.Get<GameManager>();
     }
 
-
     private void OnGUI()
     {
         GUIStyle headStyle = new GUIStyle();
@@ -28,4 +27,15 @@ public class ResourceManager : MonoBehaviour, IGameService
             GUI.Label(rect, $"{r.Type}: {r.Amount}", headStyle);
         }
     }
+    public void AddResources(int amount, ResourceTypes type) {
+        foreach (var resource in Resources) {
+            if (resource.Type == type ){
+                resource.Amount += amount;
+                return;
+            }
+        }
+        Resources.Add(new ResourceInfo(){Type = type, Amount = amount});
+    }
+
+
 }

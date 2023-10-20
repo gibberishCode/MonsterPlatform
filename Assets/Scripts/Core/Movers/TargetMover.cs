@@ -2,10 +2,12 @@ using UnityEngine;
 using Core;
 using UnityEngine.Events;
 using MyUnityHelpers;
+using Vertx.Attributes;
 
 public class TargetMover : Mover
 {
     public UnityEvent ReachedTarget;
+    [ReferenceDropdown, SerializeReference]
     private ITarget _target;
     public ITarget Target
     {

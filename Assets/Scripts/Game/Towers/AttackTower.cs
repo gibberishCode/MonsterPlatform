@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class AttackTower : Tower
 {
     public float Damage = 1;
     [SerializeField] LineRenderer _lineRenderer;

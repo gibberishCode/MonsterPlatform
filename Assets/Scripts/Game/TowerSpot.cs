@@ -22,11 +22,8 @@ public class TowerSpot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
-        {
-            return;
-        }
-        var player = other.GetComponentInParent<Player>();
+     
+        var player = other.GetComponentInParent<TowerBuilder>();
         if (player)
         {
             PlayerIn?.Invoke(this);
@@ -35,11 +32,7 @@ public class TowerSpot : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.isTrigger)
-        {
-            return;
-        }
-        var player = other.GetComponentInParent<Player>();
+        var player = other.GetComponentInParent<TowerBuilder>();
         if (player)
         {
             PlayerOut?.Invoke(this);
@@ -61,7 +54,8 @@ public class TowerSpot : MonoBehaviour
         _resoruceManager.Resources[1].Amount -= 5;
         var prefab = TowerPrefabs.GetRandom();
         var tower = Instantiate(prefab, transform.parent);
-        tower.transform.position = transform.position + Vector3.up * 2;
+        tower.transform.position = transform.position;
+        tower.transform.rotation = transform.rotation;
         Destroy(gameObject);
     }
 

@@ -12,60 +12,39 @@ public class AttackerData
     public float Damage;
     public float Frequency;
 }
-public class Attacker : MonoBehaviour
+public class Attacker : RangeTargetExecutor
 {
-    public UnityEvent<GameObject> TargetSetEvent;
     [SerializeField] AttackerData _data;
-    private Damageable _currentTarget;
-    private FrequencyExecutor _attackTimer;
-    public bool IsAttacking => _currentTarget;
+    public UnityEvent<GameObject> AttackEvent;
+    // public bool IsAttacking => _target;
+    public bool IsAttacking {get => enabled && _target;}
+    
 
-    private void Start()
-    {
-
+    private void Start() {
+        TargetSetEvent.AddListener(OnTargetSet);
+        TargetOutOfRangeEvent.AddListener(OnTargetOut);
     }
 
-    public void Init(AttackerData data)
-    {
-        _data = data;
+    private void OnTargetSet(GameObject obj) {
+        StopAllCoroutines();
+        Debug.Assert(obj.GetComponent<Damageable>());
+        StartCoroutine(AttackCourutine(obj.GetComponent<Damageable>()));
     }
 
+    private void OnTargetOut(GameObject obj) {
+        StopAllCoroutines();
+    }
 
-    private void OnInRange(GameObject gameObject)
-    {
-        var target = gameObject.GetComponent<Damageable>();
-        if (target)
-        {
-            _currentTarget = target;
-            _attackTimer = new FrequencyExecutor(_data.Frequency, this, Attack);
-            TargetSetEvent?.Invoke(gameObject);
+    private IEnumerator AttackCourutine(Damageable damageable) {
+        while (IsAttacking) {
+            yield return new WaitForSeconds( 1.0f / _data.Frequency);
+            if (damageable) {
+                AttackEvent?.Invoke(damageable.gameObject);
+                damageable.DealDamage(_data.Damage);
+            } else {
+                SetNewTarget();
+            }
         }
     }
-
-    private void OnOutRange(GameObject gameObject)
-    {
-        if (_currentTarget && _currentTarget.gameObject == gameObject)
-        {
-            _currentTarget = null;
-        }
-    }
-
-    private void Attack()
-    {
-        if (!_currentTarget)
-        {
-            _attackTimer = null;
-            return;
-        }
-        _currentTarget.DealDamage(_data.Damage);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        OnInRange(other.gameObject);
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        OnOutRange(other.gameObject);
-    }
+  
 }

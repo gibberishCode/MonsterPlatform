@@ -7,8 +7,9 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour
 {
     [SerializeField] float Health;
+    [SerializeField] bool SoftDelete;
     private float _currentHealth;
-
+    private bool _dead;
     public UnityEvent DiedEvent;
 
     private void Start()
@@ -30,7 +31,17 @@ public class Damageable : MonoBehaviour
 
     public void Die()
     {
+        if (_dead) {
+            return;
+        }
         DiedEvent?.Invoke();
-        Destroy(gameObject);
+        if (SoftDelete) {
+            foreach (var reneder in GetComponentsInChildren<Renderer>()) {
+                reneder.enabled = false;
+            }
+        } else  {
+            Destroy(gameObject);
+        }
+        _dead = true;
     }
 }

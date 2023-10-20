@@ -19,7 +19,7 @@ public class InTriggerActionExecutor : MonoBehaviour
 
     private void OnInRange(GameObject gameObject)
     {
-        if (IsTarget(gameObject))
+        if (IsTarget(gameObject)  && _executor == null)
         {
             _target = gameObject;
             _executor = new FrequencyExecutor(_frequency, this, OnExecute);
@@ -27,13 +27,33 @@ public class InTriggerActionExecutor : MonoBehaviour
         }
     }
 
+    private void OnDisable() {
+        if (_executor != null) {
+            _executor.Stop();
+        }
+    }
+
+    private void OnEnable() {
+        if (_executor != null) {
+            _executor.Start();
+        }
+    }
+
     private void OnExecute()
     {
-        if (_target)
+        if (_executor == null ) {
+            Debug.LogWarning("Executor is null ", this);
+            return;
+        }
+        if (!_executor.IsRunning) {
+            Debug.LogWarning("Executor is stopped ", this);
+            return;
+        }
+        if ( _target)
         {
             ExecuteEvent?.Invoke();
         }
-        else
+        else 
         {
             _executor.Stop();
             _executor = null;
@@ -42,11 +62,11 @@ public class InTriggerActionExecutor : MonoBehaviour
 
     private void OnOutRange(GameObject gameObject)
     {
-        if (_target == gameObject)
+        if (_executor!= null&& _target == gameObject)
         {
             _target = null;
             _executor.Stop();
-            _executor = null;
+            _executor = null;   
             OutOfRangeEvent?.Invoke(gameObject);
         }
     }

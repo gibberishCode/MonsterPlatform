@@ -10,6 +10,7 @@ public class FrequencyExecutor : IDisposable
     private MonoBehaviour _actor;
     private Coroutine _courutine;
     private bool _isRunning;
+    public bool IsRunning => _isRunning;
 
     public FrequencyExecutor(float frequency, MonoBehaviour actor, Action callback = null, bool autoRun = true)
     {

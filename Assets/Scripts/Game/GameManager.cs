@@ -12,10 +12,12 @@ public class GameData
 
 public class GameManager : MonoBehaviour, IGameService
 {
+
     [SerializeField] ResourceManager _resourceManager;
     [SerializeField] private Player _player;
     [SerializeField] private Joystick _joystick;
     [SerializeField] GameData _gameData;
+    [SerializeField] UI _ui;
     public GameData GameData => _gameData;
     public Player Player => _player;
 
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour, IGameService
     public void GameOver()
     {
         StartCoroutine(GameOverCoroutine());
+        _ui.SetGameOverScreen();
     }
 
     private IEnumerator GameOverCoroutine()
