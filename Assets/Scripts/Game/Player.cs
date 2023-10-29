@@ -22,7 +22,13 @@ public enum PlayerState
 
 }
 
-public class Player : MonoBehaviour, ITarget
+public class PlayerData { 
+    public float HealthMultiplier = 1;
+    public float AttackMultiplier = 1;
+
+}
+
+public class Player : MonoBehaviour, ITarget, IUpgradeTarget
 {
 
     [SerializeField] private float _maxSpeed;
@@ -30,6 +36,8 @@ public class Player : MonoBehaviour, ITarget
     [SerializeField] private float _slowDownFactor = 0.1f;
     [SerializeField] private Platform _platform;
     [SerializeField] private PlayerAnimator _playerAnimator;
+
+    public PlayerData PlayerData { get; set; }
     public Vector3 Position => transform.position;
 
     private Mover _mover;

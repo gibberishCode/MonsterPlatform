@@ -39,13 +39,15 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.vertx.serializereference-dropdown": "1.0.3"
+    "com.vertx.serializereference-dropdown": "1.0.3",
+    "com.mackysoft.serializereference-extensions": "1.1.9"
   },
   "scopedRegistries": [
     {
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
+        "com.mackysoft.serializereference-extensions",
         "com.openupm",
         "com.solidalloy",
         "com.solidalloy.type-references",

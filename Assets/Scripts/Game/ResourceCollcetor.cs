@@ -40,7 +40,7 @@ public class ResourceCollcetor : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void OnResourceInRange(Collider resource) {
+    public void OnResourceInRange(GameObject resource) {
         var target = resource.GetComponent<ResourceSpot>();
         if (Target == null && enabled) {
             Target = target;
@@ -49,7 +49,7 @@ public class ResourceCollcetor : MonoBehaviour
         }
     }
 
-    public void OnResourceOutOfRange(Collider resource) {
+    public void OnResourceOutOfRange(GameObject resource) {
         var target = resource.GetComponent<ResourceSpot>();
         _targets.Remove(target);
         if (Target == target) {

@@ -54,7 +54,7 @@ public class Platform : MonoBehaviour, ITarget
                 rotation = Quaternion.Euler(0, 90, 0);
             } else if (x == _grid.Width / 2) {
                 rotation = Quaternion.Euler(0, -90, 0);
-            } else if (y < 0) {
+            } else if (y == -_grid.Height / 2) {
                 rotation = Quaternion.Euler(0, 0, 0);
             } else {
                 rotation = Quaternion.Euler(0, 180, 0);
