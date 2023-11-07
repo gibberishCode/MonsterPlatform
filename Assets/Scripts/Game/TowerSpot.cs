@@ -8,6 +8,7 @@ using UnityEngine.VFX;
 public class TowerSpot : MonoBehaviour
 {
     [SerializeField] List<Tower> TowerPrefabs = new List<Tower>();
+
     [SerializeField] Material _tryingToBuildMaterial;
     public event Action<TowerSpot> PlayerIn;
     public event Action<TowerSpot> PlayerOut;

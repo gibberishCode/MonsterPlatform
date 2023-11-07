@@ -7,7 +7,7 @@ using Vertx.Attributes;
 public class TargetMover : Mover
 {
     public UnityEvent ReachedTarget;
-    [ReferenceDropdown, SerializeReference]
+    [SubclassSelector, SerializeReference]
     private ITarget _target;
     public ITarget Target
     {

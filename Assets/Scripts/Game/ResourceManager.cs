@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyUnityHelpers;
@@ -36,6 +37,34 @@ public class ResourceManager : MonoBehaviour, IGameService
         }
         Resources.Add(new ResourceInfo(){Type = type, Amount = amount});
     }
+    
+    ResourceInfo MatchResourceInfo(ResourceInfo resourceInfo) {
+        foreach(var resoruce in Resources) {
+            if (resoruce.Type == resourceInfo.Type) {
+                return resoruce;
+            }
+        }
+        return null;
 
+    }
+    
+    public bool CanSpend(List<ResourceInfo> resources) {
+        foreach(var spend in resources) {
+            var have = MatchResourceInfo(spend);
+            if (have == null || have.Amount < spend.Amount) {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    internal void Spend(List<ResourceInfo> toSpend)
+    {
+        Debug.Assert(CanSpend(toSpend));
+        foreach (var r in toSpend) {
+            var have = MatchResourceInfo(r);
+            have.Amount -= r.Amount;
+        }
+        
+    }
 }

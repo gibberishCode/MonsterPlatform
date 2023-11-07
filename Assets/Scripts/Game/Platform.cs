@@ -22,7 +22,8 @@ public class Platform : MonoBehaviour, ITarget
     [SerializeField] Vector2Int PlatformGridDimensions;
     [SerializeField] Vector2Int PlatformCellSize;
     [SerializeField] private GridDebugDrawer _gridDrawer;
-    [SerializeField] private TowerSpot _towerSpotPrefab;
+    // [SerializeField] private TowerSpot _towerSpotPrefab;
+    [SerializeField] private PlatformSpot _platformSpotPrefab;
     [SerializeField] private Vector3 _offsetBuildSpot;
     private TowerSpot _currentSpot;
     private List<TowerSpot> _spots = new List<TowerSpot>();
@@ -59,12 +60,12 @@ public class Platform : MonoBehaviour, ITarget
             } else {
                 rotation = Quaternion.Euler(0, 180, 0);
             }
-            var spot = Instantiate(_towerSpotPrefab, transform);
+            var spot = Instantiate(_platformSpotPrefab, transform);
             spot.transform.position = position + _offsetBuildSpot;
             spot.transform.rotation = rotation;
 
-            spot.PlayerIn += PlayerInSpot;
-            spot.PlayerOut += PlayerOutOfSpot;
+            // spot.PlayerIn += PlayerInSpot;
+            // spot.PlayerOut += PlayerOutOfSpot;
         });
     }
 

@@ -15,6 +15,12 @@ namespace MyUnityHelpers {
             return list[index];
         }
 
+        public static void DestroyAll(this IEnumerable<Transform> objects) {
+            foreach (var obj in objects) {
+                GameObject.Destroy(obj.gameObject);
+            }
+        }
+
         public static void DestroyAll(this IEnumerable<MonoBehaviour> objects) {
             foreach (var obj in objects) {
                 GameObject.Destroy(obj.gameObject);
