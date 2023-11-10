@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5309133685952084159}
   - component: {fileID: 7619170905259449842}
   - component: {fileID: 6761719590032478497}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 3423544084591620158}
   - component: {fileID: 4607914655376471238}
   - component: {fileID: 2613762534015913819}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 75}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 431.16, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4607914655376471238
 CanvasRenderer:
@@ -226,14 +226,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 8795502737493949706}
   - component: {fileID: 6219173735501144593}
   - component: {fileID: 5895195772204376908}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UIOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}

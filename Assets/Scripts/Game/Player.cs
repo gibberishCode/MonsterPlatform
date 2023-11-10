@@ -22,7 +22,8 @@ public enum PlayerState
 
 }
 
-public class PlayerData { 
+public class PlayerData
+{
     public float HealthMultiplier = 1;
     public float AttackMultiplier = 1;
 
@@ -43,7 +44,8 @@ public class Player : MonoBehaviour, ITarget, IUpgradeTarget
     private Mover _mover;
     private Rigidbody _rb;
     private Attacker _attacker;
-  
+    private GameManager _gameManager;
+
     private ResourceCollcetor _resourceCollector;
     private PlayerState _state;
     private bool _isOnPlatfom;
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour, ITarget, IUpgradeTarget
     {
         _mover = GetComponent<Mover>();
         _attacker = GetComponent<Attacker>();
+        _gameManager = ServiceLocator.Current.Get<GameManager>();
         _resourceCollector = GetComponent<ResourceCollcetor>();
         _resourceCollector.ResourceCollectedEvent.AddListener(
             (spot) => _playerAnimator.Shoot(spot.transform.position)
@@ -145,6 +148,10 @@ public class Player : MonoBehaviour, ITarget, IUpgradeTarget
 
     private void Update()
     {
+        if (_isOnPlatfom)
+        {
+            PlatformHealthRecovering();
+        }
         switch (_state)
         {
             case PlayerState.Idle:
@@ -199,6 +206,12 @@ public class Player : MonoBehaviour, ITarget, IUpgradeTarget
         // transform.position += _velocity * Time.deltaTime;
     }
 
+    private void PlatformHealthRecovering()
+    {
+        var settings = _gameManager.GameSettings;
+        GetComponent<Damageable>().Health.CurrentValue += settings.PlatformHealthRecoveringSpeed * Time.deltaTime;
+    }
+
     public void SetDirection(Vector3 direction)
     {
         if (direction == Vector3.zero)
@@ -214,16 +227,20 @@ public class Player : MonoBehaviour, ITarget, IUpgradeTarget
     }
 
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<Tower>()) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Tower>())
+        {
             SetState(PlayerState.StackInTowerState);
-        }   
+        }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.GetComponent<Tower>()) {
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Tower>())
+        {
             SetState(PlayerState.Idle);
-        }   
+        }
     }
 
 }

@@ -22,9 +22,44 @@ MonoBehaviour:
   - rid: 8262729439443419141
   - rid: 8262729439443419142
   - rid: 8262729439443419143
+  TowerUpgradeOptions:
+  - rid: 6095570648886411271
+  - rid: 6095570648886411272
   references:
     version: 2
     RefIds:
+    - rid: 6095570648886411271
+      type: {class: UpgradeOption, ns: , asm: Assembly-CSharp}
+      data:
+        Icon: {fileID: 0}
+        Color: {r: 0.27095047, g: 0.8113208, b: 0.32192042, a: 1}
+        Title: Health
+        Text: 
+        _resources:
+        - Amount: 10
+          Type: 0
+        _upgrade:
+          rid: 6095570648886411273
+    - rid: 6095570648886411272
+      type: {class: UpgradeOption, ns: , asm: Assembly-CSharp}
+      data:
+        Icon: {fileID: 0}
+        Color: {r: 0.7830189, g: 0.062050495, b: 0.062050495, a: 1}
+        Title: Damage
+        Text: 
+        _resources:
+        - Amount: 10
+          Type: 1
+        _upgrade:
+          rid: 6095570648886411274
+    - rid: 6095570648886411273
+      type: {class: HealthUpgrade, ns: , asm: Assembly-CSharp}
+      data:
+        Multiplier: 0.5
+    - rid: 6095570648886411274
+      type: {class: DamageUpgrade, ns: , asm: Assembly-CSharp}
+      data:
+        Multiplier: 0.1
     - rid: 8262729432765300736
       type: {class: BuildPlatform, ns: , asm: Assembly-CSharp}
       data:
@@ -32,9 +67,7 @@ MonoBehaviour:
         Color: {r: 0.3167588, g: 0.8113208, b: 0.28625846, a: 1}
         Title: Build
         Text: 
-        Resources:
-        - Amount: 5
-          Type: 0
+        _resources: []
     - rid: 8262729432765300737
       type: {class: Cancel, ns: , asm: Assembly-CSharp}
       data:
@@ -42,7 +75,7 @@ MonoBehaviour:
         Color: {r: 0.7075472, g: 0.102794565, b: 0.102794565, a: 1}
         Title: Cancel
         Text: 
-        Resources: []
+        _resources: []
     - rid: 8262729439443419141
       type: {class: BuildTower, ns: , asm: Assembly-CSharp}
       data:
@@ -50,7 +83,7 @@ MonoBehaviour:
         Color: {r: 1, g: 1, b: 1, a: 1}
         Title: Collect Tower
         Text: 
-        Resources:
+        _resources:
         - Amount: 5
           Type: 0
         TowerPrefab: {fileID: 3587978791468372719, guid: e837545676e902843b8cc0386c4d23b4, type: 3}
@@ -61,7 +94,7 @@ MonoBehaviour:
         Color: {r: 1, g: 1, b: 1, a: 1}
         Title: Attack tower
         Text: 
-        Resources:
+        _resources:
         - Amount: 5
           Type: 1
         TowerPrefab: {fileID: 3518104694943486114, guid: f6bf5463dcaa41a48a45c194e1364d64, type: 3}
@@ -72,7 +105,9 @@ MonoBehaviour:
         Color: {r: 1, g: 1, b: 1, a: 1}
         Title: Wall
         Text: 
-        Resources:
+        _resources:
+        - Amount: 5
+          Type: 0
         - Amount: 5
           Type: 1
         TowerPrefab: {fileID: 6253164070038222002, guid: 791851861da5cc14f9e9e1d6d557b698, type: 3}

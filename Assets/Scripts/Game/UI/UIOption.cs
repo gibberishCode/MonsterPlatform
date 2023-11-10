@@ -21,7 +21,8 @@ public class UIOption : MonoBehaviour, IPointerClickHandler
         _sprite.color = data.Color;
         _title.text = data.Title;
         _data = data;
-        if (_data.Resources != null && _data.Resources.Count > 0)
+        var resources = _data.GetResources();
+        if (resources != null && resources.Count > 0)
         {
             _text.text = ConstructText();
         }
@@ -35,9 +36,10 @@ public class UIOption : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         var resourceManager = ServiceLocator.Current.Get<ResourceManager>();
-        if (resourceManager.CanSpend(_data.Resources))
+        var resources = _data.GetResources();
+        if (resourceManager.CanSpend(resources))
         {
-            resourceManager.Spend(_data.Resources);
+            resourceManager.Spend(resources);
             OnClicked?.Invoke();
         }
     }
@@ -45,9 +47,9 @@ public class UIOption : MonoBehaviour, IPointerClickHandler
     private string ConstructText()
     {
         var str = "";
-        foreach (var resource in _data.Resources)
+        foreach (var resource in _data.GetResources())
         {
-            str += $"{resource.Type}: {resource.Amount} ";
+            str += $"{resource.Type}: {Math.Ceiling(resource.Amount)} ";
         }
         return str;
     }

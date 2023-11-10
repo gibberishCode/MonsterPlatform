@@ -37,9 +37,9 @@ namespace Core
     public class WorldGrid : Grid
     {
         public Vector2 CellSize { get; set; }
-        public ITarget Origin { get; set; }
+        public Transform Origin { get; set; }
 
-        public WorldGrid(int width, int height, Vector2 cellSize, ITarget origin) : base(width, height)
+        public WorldGrid(int width, int height, Vector2 cellSize, Transform origin) : base(width, height)
         {
             CellSize = cellSize;
             Origin = origin;
@@ -60,13 +60,16 @@ namespace Core
             var worldPos = index * CellSize
                            - new Vector2(CellSize.x * Width, CellSize.y * Height) / 2;
             worldPos += CellSize / 2;
-            return Origin.Position + new Vector3(worldPos.x, 0, worldPos.y);
+            var vector =  new Vector3(worldPos.x, 0, worldPos.y);
+            vector = Origin.TransformVector(vector);
+            return Origin.position + vector;
         }
 
         public Vector2Int PositionToIndex(Vector3 position)
         {
-            position -= Origin.Position;
-            position += new Vector3(CellSize.x, 0, CellSize.y) / 2;
+            // position -= Origin.Position;
+            position = Origin.InverseTransformPoint(position);
+            // position += new Vector3(CellSize.x, 0, CellSize.y) / 2;
             var res = new Vector2Int(Width / 2, Height / 2) +
                       new Vector2Int((int)(position.x / (CellSize.x)),
                           (int)(position.z / (CellSize.y)));

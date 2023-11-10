@@ -25,7 +25,7 @@ public class ResourceManager : MonoBehaviour, IGameService
         {
             ResourceInfo r = _gameManager.GameData.Resources[i];
             var rect = new Rect(250 * i, 0, 250, 300);
-            GUI.Label(rect, $"{r.Type}: {r.Amount}", headStyle);
+            GUI.Label(rect, $"{r.Type}: {(int)r.Amount}", headStyle);
         }
     }
     public void AddResources(int amount, ResourceTypes type) {
@@ -35,7 +35,7 @@ public class ResourceManager : MonoBehaviour, IGameService
                 return;
             }
         }
-        Resources.Add(new ResourceInfo(){Type = type, Amount = amount});
+        Resources.Add(new ResourceInfo(amount, type));
     }
     
     ResourceInfo MatchResourceInfo(ResourceInfo resourceInfo) {

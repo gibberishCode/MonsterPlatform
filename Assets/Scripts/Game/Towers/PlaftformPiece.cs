@@ -6,7 +6,13 @@ using UnityEngine;
 public class PlaftformPiece : MonoBehaviour
 {
     [SerializeField] Vector3 _offset;
-    // Start is called before the first frame update
+    [SerializeField] Animator _animator;
+    public bool IsMoving {get; set;}
+    
+    private void Update() {
+        _animator.enabled = IsMoving;
+    }
+
     internal void Build(Tower towerPrefab)
     {
         var tower = Instantiate(towerPrefab, transform);

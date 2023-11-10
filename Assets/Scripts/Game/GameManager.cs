@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyUnityHelpers;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 [Serializable]
 public class GameData
@@ -15,17 +17,23 @@ public class GameManager : MonoBehaviour, IGameService
 
     [SerializeField] ResourceManager _resourceManager;
     [SerializeField] UIOptionsCreator _uiOptionsCreator;
-    [SerializeField] private Player _player;
-    [SerializeField] private Joystick _joystick;
+    [SerializeField] Player _player;
+    [SerializeField] Platform _platform;
+    [SerializeField] Joystick _joystick;
     [SerializeField] GameData _gameData;
     [SerializeField] UI _ui;
     [SerializeField] TowersSettings _towerSettings;
     [SerializeField] Camera _camera;
     [SerializeField] LayerMask _interactable;
+    [SerializeField] GameSettings _settings;
+    public LayerMask UILayer;
     public GameData GameData => _gameData;
     public Player Player => _player;
+    public Platform Platform => _platform;
+    public GameSettings GameSettings => _settings;
     public TowersSettings TowersSettings => _towerSettings;
 
+    public Camera Camera => Camera.main;
 
     private void Awake()
     {
@@ -57,26 +65,73 @@ public class GameManager : MonoBehaviour, IGameService
             ServiceLocator.Current.Get<UIOptionsCreator>().Close();
         }
     }
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+    {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+            if ((1 << curRaysastResult.gameObject.layer & UILayer) != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool IsPointerOverUIElement()
+    {
+        return IsPointerOverUIElement(GetEventSystemRaycastResults());
+    }
 
+
+    //Gets all event system raycast results of current mouse or touch position.
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults;
+    }
     private void ProcessClick()
     {
+        EventSystem eventSystem = EventSystem.current;
+        var overUI = IsPointerOverUIElement();
+        if (overUI)
+        {
+            return;
+        }
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
         var hits = Physics.RaycastAll(ray, 1000);
         foreach (var hit in hits)
         {
-            var platformPiece = hit.collider.GetComponent<PlaftformPiece>();
-            if (platformPiece)
+            // var platformPiece = hit.collider.GetComponent<PlaftformPiece>();
+            // if (platformPiece)
+            // {
+            //     _uiOptionsCreator.Open(_towerSettings.TowerBuildOptions, platformPiece.transform);
+            // }
+            // else
+            var tower = hit.collider.GetComponentInParent<Tower>();
+            if (!hit.collider.isTrigger  && tower)
             {
-                _uiOptionsCreator.Open(_towerSettings.TowerBuildOptions, platformPiece.transform);
+                _uiOptionsCreator.Open(_towerSettings.TowerUpgradeOptions, tower.transform);
+                return;
             }
             else
             {
-
                 var platformSpot = hit.collider.GetComponent<PlatformSpot>();
                 if (platformSpot)
                 {
-                    _uiOptionsCreator.Open(_towerSettings.PlatformBuildOptions, platformSpot.transform);
+                    // var options = new List<UIOptionData>(_towerSettings.TowerBuildOptions);
+                    List<UIOptionData> options = new List<UIOptionData>();
+                    foreach (var option in _towerSettings.TowerBuildOptions)
+                    {
+                        var clone = (UIOptionData)option.Clone();
+                        // clone.Resources[0].Amount = 10000;
+                        options.Add(clone);
+                    }
+                    _uiOptionsCreator.Open(options, platformSpot.transform);
+                    return;
                 }
             }
         }

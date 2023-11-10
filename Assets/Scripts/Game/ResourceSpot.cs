@@ -18,7 +18,7 @@ public class ResourceSpot : MonoBehaviour
             Destroyed?.Invoke();
             Destroy(gameObject);
         }
-        return consumed;
+        return (int)consumed;
     }
 
 
