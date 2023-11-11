@@ -17,10 +17,10 @@ TagManager:
   - Platform
   - Resources
   - Tower
-  - 
-  - 
-  - 
-  - 
+  - PlatformPiece
+  - PlatformSpot
+  - Projectile
+  - Test
   - 
   - 
   - 

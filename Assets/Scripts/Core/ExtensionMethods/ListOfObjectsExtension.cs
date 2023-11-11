@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MyUnityHelpers {
@@ -13,6 +14,12 @@ namespace MyUnityHelpers {
         public static T GetRandom<T>(this IList<T> list) {
             var index = UnityEngine.Random.Range(0, list.Count);
             return list[index];
+        }
+
+        public static void DestroyAll(this IEnumerable<Transform> objects) {
+            foreach (var obj in objects) {
+                GameObject.Destroy(obj.gameObject);
+            }
         }
 
         public static void DestroyAll(this IEnumerable<MonoBehaviour> objects) {

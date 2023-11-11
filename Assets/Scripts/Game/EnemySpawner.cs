@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
         var enemy = Instantiate(_enemyPrefabs.GetRandom());
         enemy.transform.position = pos;
         //TODO fix
-        enemy.GetComponent<TargetMover>().Target = FindAnyObjectByType<Player>();
+        enemy.GetComponent<TargetMover>().Target = FindObjectOfType<Player>();
     }
 
 

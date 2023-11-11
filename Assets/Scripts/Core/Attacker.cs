@@ -9,7 +9,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class AttackerData
 {
-    public float Damage;
+    public Property Damage;
     public float Frequency;
 }
 public class Attacker : RangeTargetExecutor
@@ -40,11 +40,14 @@ public class Attacker : RangeTargetExecutor
             yield return new WaitForSeconds( 1.0f / _data.Frequency);
             if (damageable) {
                 AttackEvent?.Invoke(damageable.gameObject);
-                damageable.DealDamage(_data.Damage);
+                damageable.DealDamage(_data.Damage.MaxValue);
             } else {
                 SetNewTarget();
             }
         }
+    }
+    public void AddToMulitiplier(float m) {
+        _data.Damage.Multiplier += m;
     }
   
 }

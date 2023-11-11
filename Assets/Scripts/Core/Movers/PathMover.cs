@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Core;
@@ -24,12 +25,19 @@ public class TransformTarget : ITarget
 
 public class PathMover : TargetMover
 {
-    [SerializeReference, ReferenceDropdown]
+    [SerializeReference, SubclassSelector]
     public List<ITarget> TestPath = new List<ITarget>();
     public float WaitTime = 20;
     public bool Loop;
-    private List<ITarget> _path;
+    public event Action WaitingEvent;
+    public event Action MovingEvent;
+    private List<ITarget> _path = new List<ITarget>();
     private int _currentWaypoint;
+
+    private void Awake() {
+        
+        ReachedTarget.AddListener(OnReachedTarget);
+    }
 
     private void Start()
     {
@@ -38,7 +46,7 @@ public class PathMover : TargetMover
         {
             Target = new WaypointTarget() { Position = _path[_currentWaypoint].Position };
         }
-        ReachedTarget.AddListener(OnReachedTarget);
+        MovingEvent?.Invoke();
 
     }
 
@@ -49,6 +57,7 @@ public class PathMover : TargetMover
 
     private IEnumerator WaitAndNext()
     {
+        WaitingEvent?.Invoke();
         yield return new WaitForSeconds(WaitTime);
         _currentWaypoint++;
         if (_currentWaypoint >= _path.Count)
@@ -66,6 +75,7 @@ public class PathMover : TargetMover
         {
             Target = new WaypointTarget() { Position = _path[_currentWaypoint].Position };
         }
+        MovingEvent?.Invoke();
     }
 
 

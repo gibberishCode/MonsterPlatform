@@ -8,9 +8,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2262847879942958712, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
+      propertyPath: _data.Damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2262847879942958712, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
+      propertyPath: _data.Frequency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2262847879942958712, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
+      propertyPath: _data.Damage._maxValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2405988311066267804, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
       propertyPath: Health
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405988311066267804, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
+      propertyPath: SoftDelete
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405988311066267804, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
+      propertyPath: _maxhealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405988311066267804, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
+      propertyPath: _health._maxValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3141042515099025251, guid: 89c27e5ea8c4a283d9bf4dc5f6dd6eb4, type: 3}
       propertyPath: m_LocalPosition.x

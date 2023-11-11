@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlatformGrid : WorldGrid
 {
-    public PlatformGrid(Vector2Int dimensions, Vector2 cellSize, ITarget origin) : base(dimensions.x, dimensions.y, cellSize, origin)
+    public PlatformGrid(Vector2Int dimensions, Vector2 cellSize, Transform origin) : base(dimensions.x, dimensions.y, cellSize, origin)
     {
         Cells = new PlacementArea[dimensions.x, dimensions.x];
         for (int y = 0; y < dimensions.y; y++)

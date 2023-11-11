@@ -8,7 +8,11 @@ public enum ResourceTypes
 [System.Serializable]
 public class ResourceInfo
 {
-    public int Amount;
+    public float Amount;
     public ResourceTypes Type;
+    public ResourceInfo(float amount, ResourceTypes type) {
+        Amount = amount;
+        Type = type;
+    }
 
 }

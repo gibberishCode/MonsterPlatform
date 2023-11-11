@@ -9,6 +9,7 @@ public class MoverSettings
 {
     public float Acceleration = 10;
     public float MaxSpeed;
+    public float RotationSpeed;
     public float DistanceTollerance = 0.5f;
 }
 
@@ -87,7 +88,8 @@ public class Mover : MonoBehaviour, IMover
         if (Direction != Vector3.zero)
         {
 
-            transform.rotation = Quaternion.LookRotation(Direction);
+            var targetRot = Quaternion.LookRotation(Direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, _settings.RotationSpeed * Time.deltaTime);
         }
     }
 }

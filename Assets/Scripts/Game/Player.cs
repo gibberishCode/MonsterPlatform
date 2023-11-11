@@ -22,7 +22,14 @@ public enum PlayerState
 
 }
 
-public class Player : MonoBehaviour, ITarget
+public class PlayerData
+{
+    public float HealthMultiplier = 1;
+    public float AttackMultiplier = 1;
+
+}
+
+public class Player : MonoBehaviour, ITarget, IUpgradeTarget
 {
 
     [SerializeField] private float _maxSpeed;
@@ -30,12 +37,15 @@ public class Player : MonoBehaviour, ITarget
     [SerializeField] private float _slowDownFactor = 0.1f;
     [SerializeField] private Platform _platform;
     [SerializeField] private PlayerAnimator _playerAnimator;
+
+    public PlayerData PlayerData { get; set; }
     public Vector3 Position => transform.position;
 
     private Mover _mover;
     private Rigidbody _rb;
     private Attacker _attacker;
-  
+    private GameManager _gameManager;
+
     private ResourceCollcetor _resourceCollector;
     private PlayerState _state;
     private bool _isOnPlatfom;
@@ -47,6 +57,7 @@ public class Player : MonoBehaviour, ITarget
     {
         _mover = GetComponent<Mover>();
         _attacker = GetComponent<Attacker>();
+        _gameManager = ServiceLocator.Current.Get<GameManager>();
         _resourceCollector = GetComponent<ResourceCollcetor>();
         _resourceCollector.ResourceCollectedEvent.AddListener(
             (spot) => _playerAnimator.Shoot(spot.transform.position)
@@ -137,6 +148,10 @@ public class Player : MonoBehaviour, ITarget
 
     private void Update()
     {
+        if (_isOnPlatfom)
+        {
+            PlatformHealthRecovering();
+        }
         switch (_state)
         {
             case PlayerState.Idle:
@@ -191,6 +206,12 @@ public class Player : MonoBehaviour, ITarget
         // transform.position += _velocity * Time.deltaTime;
     }
 
+    private void PlatformHealthRecovering()
+    {
+        var settings = _gameManager.GameSettings;
+        GetComponent<Damageable>().Health.CurrentValue += settings.PlatformHealthRecoveringSpeed * Time.deltaTime;
+    }
+
     public void SetDirection(Vector3 direction)
     {
         if (direction == Vector3.zero)
@@ -206,16 +227,20 @@ public class Player : MonoBehaviour, ITarget
     }
 
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<Tower>()) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Tower>())
+        {
             SetState(PlayerState.StackInTowerState);
-        }   
+        }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.GetComponent<Tower>()) {
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Tower>())
+        {
             SetState(PlayerState.Idle);
-        }   
+        }
     }
 
 }
