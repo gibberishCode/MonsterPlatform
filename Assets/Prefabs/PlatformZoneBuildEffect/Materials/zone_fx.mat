@@ -7,11 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GroundSymbol
+  m_Name: zone_fx
   m_Shader: {fileID: 4800000, guid: 627e865a8ffec184baa42ff96122ed33, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _TEXDISTORT_USE_ON
   - _TEXMASK_USE_ON
   m_InvalidKeywords:
   - _TEX02_BLENDMODE_MULT
@@ -25,10 +26,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -70,11 +67,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Tex02:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b31d21c34cb03b8498de4684b572d6eb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TexDistort:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0a15c36afdb068c4ba374911f05d9c00, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TexMask:
@@ -83,22 +80,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - PixelSnap: 0
     - _BumpScale: 1
-    - _Col_Mult: 2.73
-    - _ColorMask: 15
+    - _Col_Mult: 7
     - _CullMode: 0
     - _Cutoff: 0.5
-    - _CutoutSm: 1
-    - _CutoutThr: 0.58
+    - _CutoutSm: 0.83
+    - _CutoutThr: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendFactor: 10
-    - _EnableExternalAlpha: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _InvFade: 2.31
     - _Mask_Distort_U: 0
     - _Mask_Distort_V: 0
     - _Metallic: 0
@@ -109,34 +102,25 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendFactor: 5
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
     - _Tex02_BlendMode: 0
     - _Tex02_Use: 0
     - _TexDistort_Invert_G: 0
     - _TexDistort_Invert_R: 0
-    - _TexDistort_Use: 0
+    - _TexDistort_Use: 1
     - _TexMask_Use: 1
     - _Tex_Distort_U: 0
     - _Tex_Distort_V: 0
     - _UVSec: 0
-    - _UseUIAlphaClip: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
+    - _Color: {r: 0.7735849, g: 0.51450694, b: 0.51450694, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tex01_OffsetSkew: {r: 0, g: 0, b: 0, a: 0}
-    - _Tex01_TilingScroll: {r: 1, g: 1, b: 0, a: 0}
+    - _Tex01_TilingScroll: {r: 2, g: 2, b: 0, a: 0}
     - _Tex02_OffsetSkew: {r: 0, g: 0, b: 0, a: 0}
-    - _Tex02_TilingScroll: {r: 1, g: 1, b: 0, a: 0}
+    - _Tex02_TilingScroll: {r: 3, g: 3, b: 0, a: 0}
     - _TexDistort_OffsetSkew: {r: 0, g: 0, b: 0, a: 0}
     - _TexDistort_TilingScroll: {r: 1, g: 1, b: 0, a: 0}
     - _TexMask_OffsetSkew: {r: 0, g: 0, b: 0, a: 0}
     - _TexMask_TilingScroll: {r: 1, g: 1, b: 0, a: 0}
-    - _TintColor: {r: 0.7830189, g: 0.04801533, b: 0.04801533, a: 1}
   m_BuildTextureStacks: []
