@@ -8,8 +8,8 @@ using UnityEngine;
 
 
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
+    public static event Action DiedEvent;
     [SerializeField] LayerMask _castLayers;
     [SerializeField] FollowPlayerState _followPlayerState;
     [SerializeField] AttackState _attackState;
@@ -20,10 +20,9 @@ public class Enemy : MonoBehaviour
     private bool _isAvoiding;
     private FSMRunner _runner;
     private FSMDependencieManager _dependencyManager;
-    
 
-    private void Awake()
-    {
+
+    private void Awake() {
         _mover = GetComponent<TargetMover>();
         _attacker = GetComponent<Attacker>();
         _dependencyManager = new FSMDependencieManager();
@@ -31,13 +30,15 @@ public class Enemy : MonoBehaviour
         _dependencyManager.Register(this);
         _dependencyManager.Register(_mover);
         _attackState = Instantiate(_attackState);
+        var damageable = GetComponent<Damageable>();
+        damageable.DiedEvent.AddListener(() => DiedEvent?.Invoke());
         _followPlayerState = Instantiate(_followPlayerState);
-            _dependencyManager.Register(_runner);
-            _dependencyManager.Register(_attackState);
-            _dependencyManager.Register(_followPlayerState);
-            _dependencyManager.Register(_attacker);
-            _dependencyManager.ConstructState(_attackState);
-            _dependencyManager.ConstructState(_followPlayerState);
+        _dependencyManager.Register(_runner);
+        _dependencyManager.Register(_attackState);
+        _dependencyManager.Register(_followPlayerState);
+        _dependencyManager.Register(_attacker);
+        _dependencyManager.ConstructState(_attackState);
+        _dependencyManager.ConstructState(_followPlayerState);
         _runner.SetState(_followPlayerState);
         // TargetPlayer();
     }

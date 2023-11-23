@@ -52,8 +52,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stones02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 307557988c1def346a7c6419792101ff, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 307557988c1def346a7c6419792101ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7585161743634851692}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 307557988c1def346a7c6419792101ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8694863473100025391}
   m_SourcePrefab: {fileID: 100100000, guid: 307557988c1def346a7c6419792101ff, type: 3}
+--- !u!1 &965508685252889596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 307557988c1def346a7c6419792101ff, type: 3}
+  m_PrefabInstance: {fileID: 119139615020988077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &-7585161743634851692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965508685252889596}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6887537, y: 0.8638118, z: 1.1774263}
+  m_Center: {x: -0.009761736, y: -0.18120292, z: 0.05159861}
+--- !u!114 &-8694863473100025391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965508685252889596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a064aaea1a2ae4cb99c4556b3e154d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlePool: {fileID: 11400000, guid: 1203ff90f188cad4ea528cb57c3d11bb, type: 2}
+  DelayDestory: 0.5

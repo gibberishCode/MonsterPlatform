@@ -6,8 +6,7 @@ using UnityEngine.Events;
 
 [Serializable]
 public class Property {
-    [SerializeField]
-    private float _maxValue;
+    [SerializeField] private float _maxValue;
     private float _minValue;
     private float _currenValue;
     private float _multiplier = 1;
@@ -19,7 +18,7 @@ public class Property {
             _currenValue = Mathf.Clamp(value, MinValue, MaxValue);
         }
     }
-    
+
     public float Multiplier {
         get => _multiplier;
         set {
@@ -28,9 +27,7 @@ public class Property {
     }
 }
 
-public class Damageable : MonoBehaviour
-{
-    // [SerializeField] float _maxhealth;
+public class Damageable : MonoBehaviour {
     [SerializeField] bool SoftDelete;
     [SerializeField] Property _health;
     public Property Health => _health;
@@ -47,47 +44,37 @@ public class Damageable : MonoBehaviour
     // }
     // public float MaxHealth => _maxhealth;
 
-    private void Start()
-    {
+    private void Start() {
         _health.CurrentValue = _health.MaxValue;
         // _currentHealth = _maxhealth;
         // _startHealth = _maxhealth;
     }
-    public void DealDamage(float amount)
-    {
-        if (amount <= 0)
-        {
+    public void DealDamage(float amount) {
+        if (amount <= 0) {
             return;
         }
         _health.CurrentValue -= amount;
         // _currentHealth -= amount;
-        if (_health.CurrentValue <= 0)
-        {
+        if (_health.CurrentValue <= 0) {
             Die();
         }
     }
 
-    public void Die()
-    {
-        if (_dead)
-        {
+    public void Die() {
+        if (_dead) {
             return;
         }
         DiedEvent?.Invoke();
-        if (SoftDelete)
-        {
-            foreach (var reneder in GetComponentsInChildren<Renderer>())
-            {
+        if (SoftDelete) {
+            foreach (var reneder in GetComponentsInChildren<Renderer>()) {
                 reneder.enabled = false;
             }
-        }
-        else
-        {
+        } else {
             Destroy(gameObject);
         }
         _dead = true;
     }
-    
+
     public void AddToMulitiplier(float m) {
         _health.Multiplier += m;
         // _multiplier += m;

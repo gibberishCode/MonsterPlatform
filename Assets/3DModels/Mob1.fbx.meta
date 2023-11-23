@@ -24,22 +24,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'metarig|Attack' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'shoulder.L' has translation animation that
-      will be discarded.\n\t'upper_arm.L' has translation animation that will be
-      discarded.\n\t'shoulder.R' has translation animation that will be discarded.\n\t'upper_arm.R'
-      has translation animation that will be discarded.\n\t'thigh.L' has translation
-      animation that will be discarded.\n\t'thigh.R' has translation animation that
-      will be discarded.\n\nClip 'metarig|Idle' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'shoulder.L' has translation animation that
-      will be discarded.\n\t'shoulder.R' has translation animation that will be discarded.\n\nClip
-      'metarig|Run' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'upper_arm.L'
-      has translation animation that will be discarded.\n\t'upper_arm.R' has translation
-      animation that will be discarded.\n\t'thigh.L' has translation animation that
-      will be discarded.\n\t'thigh.R' has translation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -85,7 +70,7 @@ ModelImporter:
       name: metarig|Idle
       takeName: metarig|Idle
       internalID: -5324238279805231817
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
