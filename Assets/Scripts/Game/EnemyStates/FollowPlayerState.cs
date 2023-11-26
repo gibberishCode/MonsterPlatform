@@ -29,8 +29,11 @@ public class FollowPlayerState : State {
         var ray = new Ray(_runner.Transform.position, _runner.Transform.forward);
         Debug.DrawRay(_runner.Transform.position, _runner.Transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 3f, _attackMask, QueryTriggerInteraction.Ignore)) {
+            Debug.Log("Found player");
+            var damageable = hit.collider.GetComponent<Damageable>();
+            Debug.Assert(damageable);
             _runner.SetState(_attackState);
-            _attackState.SetTarget(hit.collider.GetComponent<Damageable>());
+            _attackState.SetTarget(damageable);
         }
     }
 }

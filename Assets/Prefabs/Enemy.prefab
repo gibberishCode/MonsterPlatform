@@ -91,8 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535337acf315a9c98a8e9b127a4bf653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxhealth: 0
   SoftDelete: 0
+  _health:
+    _maxValue: 0
   DiedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -130,7 +131,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _data:
-    Damage: 10
+    Damage:
+      _maxValue: 0
     Frequency: 0.5
   AttackEvent:
     m_PersistentCalls:
@@ -163,7 +165,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3433978396397009001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c9ba572b1e36d64aa95bf85895f08d5, type: 3}
   m_Name: 
@@ -185,7 +187,7 @@ MonoBehaviour:
         m_CallState: 2
   _platform:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4608
 --- !u!114 &2959621396556602712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layer:
     serializedVersion: 2
-    m_Bits: 2112
+    m_Bits: 4160
   _useTriggers: 0
   OnTriggerEnterEvent:
     m_PersistentCalls:

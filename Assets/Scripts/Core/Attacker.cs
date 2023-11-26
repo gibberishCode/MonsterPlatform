@@ -27,8 +27,10 @@ public class Attacker : RangeTargetExecutor
 
     private void OnTargetSet(GameObject obj) {
         StopAllCoroutines();
-        Debug.Assert(obj.GetComponent<Damageable>());
-        StartCoroutine(AttackCourutine(obj.GetComponent<Damageable>()));
+        var damageable = obj.GetComponentInParent<Damageable>();
+        Debug.Assert(damageable);
+        StartCoroutine(AttackCourutine(damageable));
+        Debug.Log($"Set target {obj} for {gameObject}", transform);
     }
 
     private void OnTargetOut(GameObject obj) {

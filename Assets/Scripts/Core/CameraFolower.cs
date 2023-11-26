@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFolower : MonoBehaviour
 {
-    [SerializeField] Transform _target;             // The target to follow.
-    [SerializeField] float _smoothSpeed = 5.0f;    // The speed at which the camera follows the target.
-    [SerializeField] Vector3 _offset = new Vector3(0, 2, -5);  // The offset from the target.
+    [SerializeField] Transform _target;           
+    [SerializeField] float _smoothSpeed = 5.0f;    
+    [SerializeField] Vector3 _offset = new Vector3(0, 2, -5);  
     [SerializeField] private bool _autoOffest;
 
     private void Start() {
