@@ -47,7 +47,7 @@ ModelImporter:
       name: metarig|Idle
       takeName: metarig|Idle
       internalID: -5324238279805231817
-      firstFrame: 0
+      firstFrame: 1.4
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
@@ -105,7 +105,7 @@ ModelImporter:
       name: metarig|none
       takeName: metarig|none
       internalID: -4766193585828452997
-      firstFrame: 0
+      firstFrame: 1.4
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
@@ -134,7 +134,7 @@ ModelImporter:
       name: metarig|Run
       takeName: metarig|Run
       internalID: -2483591982332496685
-      firstFrame: 0
+      firstFrame: 1.4
       lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
