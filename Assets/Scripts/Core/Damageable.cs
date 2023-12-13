@@ -10,7 +10,10 @@ public class Property {
     private float _minValue;
     private float _currenValue;
     private float _multiplier = 1;
-    public float MaxValue => _maxValue * _multiplier;
+    public float MaxValue {
+        get => _maxValue * _multiplier;
+        set => _maxValue = value;
+    }
     public float MinValue => _minValue * _multiplier;
     public float CurrentValue {
         get => _currenValue * _multiplier;
@@ -46,8 +49,6 @@ public class Damageable : MonoBehaviour {
 
     private void Start() {
         _health.CurrentValue = _health.MaxValue;
-        // _currentHealth = _maxhealth;
-        // _startHealth = _maxhealth;
     }
     public void DealDamage(float amount) {
         if (amount <= 0) {

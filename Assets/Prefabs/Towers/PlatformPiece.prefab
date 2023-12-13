@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoftDelete: 0
   _health:
-    _maxValue: 15
+    _maxValue: 100
   DiedEvent:
     m_PersistentCalls:
       m_Calls: []

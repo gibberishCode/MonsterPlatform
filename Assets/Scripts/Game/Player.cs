@@ -193,8 +193,8 @@ public class Player : MonoBehaviour, ITarget, IUpgradeTarget
                 }
                 break;
             case PlayerState.StackInTowerState:
-                var dir = _platform.transform.position.ZeroY() - transform.position.ZeroY();
-                _rb.AddForce(dir.normalized * 100);
+                // var dir = _platform.transform.position.ZeroY() - transform.position.ZeroY();
+                // _rb.AddForce(dir.normalized * 100);
                 break;
         }
         // _velocity += _direction * _acceleration * Time.deltaTime;

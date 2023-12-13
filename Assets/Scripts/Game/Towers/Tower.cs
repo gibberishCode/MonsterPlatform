@@ -9,8 +9,18 @@ public class Tower : MonoBehaviour
     public PlaftformPiece PlatformPiece => _platformPiece;
     
     
+    private void Start() {
+        _platformPiece.OnDiedEvent += Die;
+    }
+    
     public void Unregister() {
         var gameManager = ServiceLocator.Current.Get<GameManager>();
         gameManager.Platform.UnregisterPlatform(_platformPiece);
+    }
+    
+    private void Die() {
+        Unregister();
+        Destroy(gameObject);
+
     }
 }

@@ -8,7 +8,7 @@ public class RangeTargetExecutor : MonoBehaviour {
     protected GameObject _target;
     public GameObject Target {
         get => _target;
-        set  {
+        set {
             TargetOutOfRangeEvent?.Invoke(_target);
             _target = value;
             if (value) {
@@ -28,15 +28,22 @@ public class RangeTargetExecutor : MonoBehaviour {
         if (_target == null) {
             Target = obj;
         } else {
-            Debug.Assert(!_targets.Contains(obj));
-            _targets.Add(obj);
+            if (!_targets.Contains(obj)) {
+                _targets.Add(obj);
+            }
         }
-    }    
+    }
+    
+    private void Update() {
+        if (_target == null) {
+            SetNewTarget();
+        }
+    }
 
     public void OutRange(GameObject obj) {
         if (_target == obj) {
             SetNewTarget();
-        } 
+        }
         _targets.Remove(obj);
     }
 

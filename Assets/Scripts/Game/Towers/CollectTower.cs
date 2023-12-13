@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyUnityHelpers;
@@ -17,5 +18,9 @@ public class CollectTower : Tower
         var resource = collider.GetComponent<ResourceSpot>();
         var consumed = resource.Consume(100);
         _resourceManager.AddResources(consumed, resource.ResourceInfo.Type);
+    }
+
+    internal void CollectTrash() {
+        Debug.Log("Collect trash");
     }
 }

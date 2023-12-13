@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlatformHealthRecoveringSpeed: 2
   TowerCostRate: 1.12
+  InitialEnemySpawnDelay: 10
+  _maxEnemies: 4

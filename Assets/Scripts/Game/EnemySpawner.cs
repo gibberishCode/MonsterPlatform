@@ -12,19 +12,32 @@ public class EnemySpawner : MonoBehaviour {
     private GameManager _gameManager;
     private int _spawned;
     private Player _player;
+    private int _currentDifficulty = 1;
 
     private void Start() {
-        _spawnTimer = new FrequencyExecutor(Frequency, this, Spawn);
         _gameManager = ServiceLocator.Current.Get<GameManager>();
         _player = _gameManager.Player;
         Enemy.DiedEvent += () => {
             _spawned--;
             _spawnTimer.Start();
         };
+        StartCoroutine(StartEnemySpawing());
+    }
+    
+    private IEnumerator IncreaseDifficulty() {
+        while (true) {
+            yield return new WaitForSeconds(_gameSettings.DifficultyIncreaseTimer);
+            _currentDifficulty++;
+        }
     }
     
     private void Update() {
         transform.position = _player.transform.position;
+    }
+    
+    private IEnumerator StartEnemySpawing() {
+        yield return new WaitForSeconds(_gameSettings.InitialEnemySpawnDelay);
+        _spawnTimer = new FrequencyExecutor(Frequency, this, Spawn);
     }
 
     private void Spawn() {
@@ -35,11 +48,10 @@ public class EnemySpawner : MonoBehaviour {
         enemy.transform.position = pos;
         //TODO fix
         enemy.GetComponent<TargetMover>().Target = _player;
+        enemy.Init(_currentDifficulty);
         _spawned++;
         if (_spawned == _gameSettings.MaxEnemies) {
             _spawnTimer.Stop();
         }
     }
-
-
 }

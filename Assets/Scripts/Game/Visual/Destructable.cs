@@ -18,6 +18,10 @@ public class Destructable : MonoBehaviour {
         if (other.isTrigger) {
             return;
         }
+        var collect = other.GetComponentInParent<CollectTower>();
+        if (collect) {
+            collect.CollectTrash();
+        }
         Expload();
     }
 

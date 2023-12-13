@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyUnityHelpers;
 using UnityEngine;
 
 
@@ -41,6 +42,15 @@ public class Enemy : MonoBehaviour {
         _dependencyManager.ConstructState(_followPlayerState);
         _runner.SetState(_followPlayerState);
         // TargetPlayer();
+    }
+
+    internal void Init(int difficulty) {
+        var settings = ServiceLocator.Current.Get<GameManager>().GameSettings;
+        var health = GetComponent<Damageable>();
+        health.Health.CurrentValue *= settings.EnemyHealthIncreaseRate * difficulty;
+        health.Health.MaxValue = health.Health.CurrentValue;
+        var attack = GetComponent<DamageDealer>();
+        attack.Damage_ = attack.Damage_ * settings.IncreaseEnemyAttackRate * difficulty;
     }
 
     // private void Update() {
