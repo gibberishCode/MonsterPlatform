@@ -83,12 +83,17 @@ MonoBehaviour:
       m_Calls: []
   TestPath:
   - rid: 6095570648886411269
+  - rid: 1283921772546621440
   - rid: 6095570648886411266
-  WaitTime: 3
+  WaitTime: 40
   Loop: 0
   references:
     version: 2
     RefIds:
+    - rid: 1283921772546621440
+      type: {class: TransformTarget, ns: , asm: Assembly-CSharp}
+      data:
+        _transform: {fileID: 0}
     - rid: 6095570648886411266
       type: {class: TransformTarget, ns: , asm: Assembly-CSharp}
       data:
