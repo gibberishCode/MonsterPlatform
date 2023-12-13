@@ -9429,6 +9429,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0c86cb223fdb03348906b5f354f5f2a9, type: 3}
   m_PrefabInstance: {fileID: 1634354409}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &957678787 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8113716399846597082, guid: 49fd3e4a37579e147b23278e4e4d007b, type: 3}
+  m_PrefabInstance: {fileID: 1616451408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fed505f52698024aad7427af59fe9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -21744,7 +21755,7 @@ MonoBehaviour:
   _resourceManager: {fileID: 2117722448}
   _uiOptionsCreator: {fileID: 790626410}
   _player: {fileID: 72452210}
-  _platform: {fileID: 0}
+  _platform: {fileID: 957678787}
   _joystick: {fileID: 1791493358}
   _gameData:
     Resources:
